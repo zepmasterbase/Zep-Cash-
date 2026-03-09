@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zep Cash Presale</title>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#00E5FF;
+  --violet:#7B4DFF;
+  --glass:rgba(255,255,255,0.05);
+  --bg:radial-gradient(circle at 30% 10%, #050018, #00000c);
+  --text-light:rgba(255,255,255,.85);
+  --card-radius:22px;
+}
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:var(--bg);
+  color:white;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+}
+.logo{
+  font-family:Orbitron;
+  font-size:24px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.container{
+  max-width:800px;
+  margin:50px auto;
+  padding:0 16px;
+}
+.glass-card{
+  background:var(--glass);
+  backdrop-filter:blur(25px);
+  border-radius:var(--card-radius);
+  padding:24px;
+  margin-bottom:24px;
+  box-shadow:0 0 30px rgba(0,229,255,0.25);
+}
+h2{text-align:center;margin-bottom:12px;font-family:Orbitron;}
+input{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  margin-bottom:14px;
+  background:rgba(255,255,255,0.05);
+  color:white;
+}
+input::placeholder{color:rgba(255,255,255,0.6);}
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  font-family:Orbitron;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  color:#050015;
+  cursor:pointer;
+  font-weight:700;
+  transition:.3s;
+}
+button:hover{transform:translateY(-2px);box-shadow:0 0 30px var(--blue),0 0 60px var(--violet);}
+.stats{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.stats div{flex:1;text-align:center;}
+.countdown{font-size:20px;text-align:center;margin:12px 0;color:var(--text-light);}
+footer{
+  text-align:center;
+  margin-top:50px;
+  font-size:14px;
+  opacity:.7;
+}
+.balance-status{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
+  font-size:14px;
+}
+canvas{
+  margin-top:16px;
+  border-radius:12px;
+  background:#111133;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Zep Cash Presale</div>
+</header>
+
+<div class="container">
+
+  <!-- Presale card -->
+  <div class="glass-card">
+    <h2>Buy Zep Cash (ZAC) Now</h2>
+    <div class="stats">
+      <div>
+        <strong id="sold">0</strong><br>Sold
+      </div>
+      <div>
+        <strong id="remaining">500,000,000</strong><br>Remaining
+      </div>
+      <div>
+        <strong id="price">0.00025 USDC</strong><br>Price
+      </div>
+    </div>
+
+    <div class="countdown" id="countdown">Presale starts in: Loading...</div>
+
+    <div class="balance-status">
+      <span>Wallet: <span id="walletStatus">Not connected</span></span>
+      <span>USDC Balance: <span id="usdcBalance">0</span></span>
+    </div>
+
+    <input type="text" id="usdcAmount" placeholder="USDC Amount to spend">
+    <div style="margin-bottom:14px;">You will receive <span id="zacAmount">0</span> ZAC</div>
+    <button id="buyBtn">Connect Wallet & Buy ZAC</button>
+
+    <canvas id="priceChart" height="100"></canvas>
+  </div>
+
+</div>
+
+<footer>
+  Powered by Base Network | Zep Cash © 2026
+</footer>
+
+<script>
+// ======= Presale Details =======
+const presalePrice = 0.00025; // USDC per ZAC
+const totalSupply = 500_000_000;
+let sold = 0;
+
+// ======= Countdown =======
+const presaleStart = new Date();
+presaleStart.setDate(presaleStart.getDate() + 1); // example: 1 day from now
+function updateCountdown(){
+  const now = new Date();
+  const diff = presaleStart - now;
+  if(diff>0){
+    const h=Math.floor(diff/1000/60/60);
+    const m=Math.floor((diff/1000/60)%60);
+    const s=Math.floor((diff/1000)%60);
+    document.getElementById("countdown").innerText=`Presale starts in: ${h}h ${m}m ${s}s`;
+  } else {
+    document.getElementById("countdown").innerText="Presale is live!";
+  }
+}
+setInterval(updateCountdown,1000);
+
+// ======= Wallet & Presale =======
+let provider, signer, userAddress;
+const contractAddress="0xA40F79dbeEE44AF9EC40d1D9b0e10EB1110546c1";
+const usdcAddress="0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"; // example USDC
+const abi=[
+  "function balanceOf(address owner) view returns (uint256)",
+  "function transfer(address to,uint amount) returns (bool)"
+];
+
+async function connectWalletAndBuy(){
+  if(!window.ethereum){alert("Install MetaMask or Base wallet."); return;}
+  provider=new ethers.providers.Web3Provider(window.ethereum);
+  await provider.send("eth_requestAccounts",[]);
+  signer=provider.getSigner();
+  userAddress=await signer.getAddress();
+
+  document.getElementById("walletStatus").innerText=userAddress.substring(0,6)+"..."+userAddress.slice(-4);
+
+  // Fetch USDC balance
+  const usdcContract=new ethers.Contract(usdcAddress,[
+    "function balanceOf(address owner) view returns(uint256)"
+  ],provider);
+  let usdcBal=await usdcContract.balanceOf(userAddress);
+  usdcBal=ethers.utils.formatUnits(usdcBal,6);
+  document.getElementById("usdcBalance").innerText=usdcBal;
+
+  // Calculate ZAC to receive
+  const usdcAmount=parseFloat(document.getElementById("usdcAmount").value);
+  if(!usdcAmount || usdcAmount<=0){alert("Enter USDC amount"); return;}
+  const zacAmount=usdcAmount/presalePrice;
+  document.getElementById("zacAmount").innerText=zacAmount.toFixed(0);
+
+  // Approve USDC and transfer (simplified for presale)
+  const usdcWithSigner=new ethers.Contract(usdcAddress,[
+    "function approve(address spender,uint256 amount) public returns(bool)"
+  ],signer);
+  const txApprove=await usdcWithSigner.approve(contractAddress,ethers.utils.parseUnits(usdcAmount.toString(),6));
+  await txApprove.wait();
+
+  const presaleContract=new ethers.Contract(contractAddress,abi,signer);
+  const tx=await presaleContract.transfer(userAddress,ethers.utils.parseUnits(zacAmount.toString(),18));
+  await tx.wait();
+
+  alert(`Successfully bought ${zacAmount.toFixed(0)} ZAC`);
+  sold+=zacAmount;
+  document.getElementById("sold").innerText=sold.toFixed(0);
+  document.getElementById("remaining").innerText=(totalSupply-sold).toFixed(0);
+}
+
+// ======= Update ZAC Price Chart (simulated) =======
+const ctx=document.getElementById("priceChart").getContext("2d");
+const priceChart=new Chart(ctx,{
+  type:'line',
+  data:{
+    labels:['T-5','T-4','T-3','T-2','T-1','Now'],
+    datasets:[{
+      label:'ZAC Price (USDC)',
+      data:[0.00020,0.00022,0.00021,0.00023,0.00024,0.00025],
+      borderColor:'#00E5FF',
+      backgroundColor:'rgba(0,229,255,0.1)',
+      tension:0.3
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{
+      legend:{display:false},
+    },
+    scales:{
+      y:{beginAtZero:false},
+      x:{display:true}
+    }
+  }
+});
+
+document.getElementById("buyBtn").addEventListener("click",connectWalletAndBuy);
+
+</script>
+
+</body>
+</html>
