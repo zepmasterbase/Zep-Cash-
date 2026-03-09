@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zep Cash Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#00E5FF;
+  --violet:#7B4DFF;
+  --glass:rgba(255,255,255,0.05);
+  --bg:radial-gradient(circle at 30% 10%, #050018, #00000c);
+  --card-radius:22px;
+  --text-light:rgba(255,255,255,0.8);
+}
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:var(--bg);
+  color:white;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+}
+.logo{
+  font-family:Orbitron;
+  font-size:24px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.button{
+  display:inline-block;
+  padding:12px 24px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  color:#050015;
+  font-family:Orbitron;
+  font-weight:700;
+  cursor:pointer;
+  text-align:center;
+  transition:.3s;
+}
+.button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 30px var(--blue),0 0 60px var(--violet);
+}
+.container{
+  max-width:900px;
+  margin:50px auto;
+  padding:0 16px;
+}
+h1,h2{
+  font-family:Orbitron;
+  margin-bottom:16px;
+  text-align:center;
+}
+p{line-height:1.6;margin-bottom:12px;color:var(--text-light);}
+.timeline{
+  position:relative;
+  margin:40px 0;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:20px;
+  width:4px;
+  height:100%;
+  background:linear-gradient(to bottom,var(--blue),var(--violet));
+  border-radius:2px;
+}
+.event{
+  position:relative;
+  margin-left:60px;
+  margin-bottom:40px;
+  padding:20px;
+  background:var(--glass);
+  backdrop-filter:blur(25px);
+  border-radius:var(--card-radius);
+  box-shadow:0 0 20px rgba(0,229,255,0.2);
+}
+.event::before{
+  content:"";
+  position:absolute;
+  left:-44px;
+  top:20px;
+  width:28px;
+  height:28px;
+  background:linear-gradient(45deg,var(--blue),var(--violet));
+  border-radius:50%;
+  border:3px solid #050015;
+}
+.event h3{margin-top:0;margin-bottom:6px;}
+.event p{margin-bottom:0;}
+footer{
+  text-align:center;
+  margin-top:50px;
+  font-size:14px;
+  opacity:.7;
+}
+@media(max-width:480px){
+  .event{margin-left:40px;padding:16px;}
+  .timeline::before{left:16px;}
+  .event::before{left:-36px;width:24px;height:24px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Zep Cash</div>
+  <div class="button" onclick="location.href='index.html'">Home</div>
+</header>
+
+<div class="container">
+
+  <h1>Zep Cash Roadmap</h1>
+  <p>Follow the journey of Zep Cash and the Campus Wave ecosystem as we empower student creators globally.</p>
+
+  <div class="timeline">
+
+    <div class="event">
+      <h3>Q1 2026 – Zep Cash Presale</h3>
+      <p>Launch of ZAC presale. Early supporters can buy tokens at $0.00025. Community building and awareness campaigns start.</p>
+    </div>
+
+    <div class="event">
+      <h3>Q2 2026 – Campus Wave Beta</h3>
+      <p>Beta launch of Campus Wave music & podcast platform. Students creators start uploading content and tipping with ZAC.</p>
+    </div>
+
+    <div class="event">
+      <h3>Q3 2026 – Zep Swipe Integration</h3>
+      <p>Zep Cash fully integrated into Zep Swipe for freelance payments, tipping, and creator rewards for university students.</p>
+    </div>
+
+    <div class="event">
+      <h3>Q4 2026 – Public Listing & Growth</h3>
+      <p>Zep Cash listed on DEX platforms. Expanded user acquisition and global student creator adoption.</p>
+    </div>
+
+    <div class="event">
+      <h3>2027+ – Ecosystem Expansion</h3>
+      <p>Additional Campus Wave features, artist analytics dashboards, cross-campus collaborations, and new integrations for ZAC usage.</p>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;">
+    <div class="button" onclick="location.href='about.html'">Learn More</div>
+  </div>
+
+</div>
+
+<footer>
+  Zep Cash © 2026 | Powered by Base Network
+</footer>
+
+</body>
+</html>
