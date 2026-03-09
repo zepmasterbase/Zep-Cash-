@@ -4,155 +4,220 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zep Cash (ZAC) — Presale</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue:#00E5FF;
-  --violet:#7B4DFF;
-  --bg:#070716;
-  --glass:rgba(255,255,255,0.05);
-  --text-light:rgba(255,255,255,0.85);
+  --blue:#00f0ff;
+  --violet:#9c4dff;
+  --bg:radial-gradient(circle at 30% 10%, #050018, #00000c);
+  --glass:rgba(255,255,255,0.08);
+  --text-light:rgba(255,255,255,.85);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-body{background:var(--bg);color:#fff;min-height:100vh;display:flex;flex-direction:column;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Poppins,sans-serif;}
+
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:white;
+  overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
 header{
-  display:flex;justify-content:space-between;align-items:center;padding:16px 24px;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
 }
-.logo{
-  font-family:Orbitron;font-size:24px;font-weight:700;
-  background:linear-gradient(90deg,var(--blue),var(--violet));
-  -webkit-background-clip:text;color:transparent;
-}
-nav a{
-  margin-left:18px;color:#fff;text-decoration:none;font-weight:500;transition:.3s;
-}
-nav a:hover{color:var(--blue);}
 
-.hero{
-  flex:1;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:60px 20px;
+.logo{
+  font-family:Orbitron;
+  font-size:28px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  -webkit-background-clip:text;
+  color:transparent;
 }
-.hero h1{
-  font-family:Orbitron;font-size:48px;background:linear-gradient(90deg,var(--blue),var(--violet));
-  -webkit-background-clip:text;color:transparent;margin-bottom:16px;
+
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:500;
+  transition:.3s;
 }
-.hero p{max-width:600px;margin:0 auto 24px;color:var(--text-light);}
-.btn{padding:14px 28px;font-family:Orbitron;font-size:16px;border:none;border-radius:999px;
-background:linear-gradient(45deg,var(--blue),var(--violet));color:#050015;cursor:pointer;transition:.3s;margin:0 8px;}
-.btn:hover{transform:translateY(-2px);box-shadow:0 0 20px var(--blue),0 0 40px var(--violet);}
+
+nav a:hover{
+  color:var(--blue);
+}
+
+.main{
+  width:100%;
+  max-width:1200px;
+  padding:40px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:30px;
+}
+
+.card{
+  width:100%;
+  max-width:500px;
+  background:var(--glass);
+  border-radius:20px;
+  padding:28px;
+  box-shadow:0 0 30px rgba(0,240,255,.25),0 0 60px rgba(156,77,255,.25);
+  animation:pulse 2.5s infinite alternate;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 20px rgba(0,240,255,.25),0 0 40px rgba(156,77,255,.25);}
+  50%{box-shadow:0 0 30px rgba(0,240,255,.35),0 0 60px rgba(156,77,255,.35);}
+  100%{box-shadow:0 0 20px rgba(0,240,255,.25),0 0 40px rgba(156,77,255,.25);}
+}
+
+h1,h2{
+  font-family:Orbitron;
+  text-align:center;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  font-family:Orbitron;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  color:#050015;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px var(--blue),0 0 40px var(--violet);
+}
 
 .stats{
-  display:flex;justify-content:center;gap:24px;margin:32px 0;
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
 }
-.stat-card{
-  background:var(--glass);backdrop-filter:blur(25px);border-radius:22px;padding:24px;text-align:center;
-  min-width:120px;box-shadow:0 0 30px rgba(0,229,255,0.2);
-}
-.stat-card h2{font-family:Orbitron;font-size:28px;margin-bottom:8px;}
-.stat-card p{opacity:.7;font-size:14px;}
 
-.presale{
-  background:var(--glass);backdrop-filter:blur(25px);border-radius:22px;margin:20px auto;padding:28px;
-  max-width:480px;text-align:center;box-shadow:0 0 30px rgba(123,77,255,0.25);
+.stat{
+  flex:1;
+  margin:0 10px;
+  padding:20px;
+  border-radius:20px;
+  background:var(--glass);
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,240,255,.2),0 0 40px rgba(156,77,255,.2);
+  animation:pulse 3s infinite alternate;
 }
-.presale h3{font-family:Orbitron;font-size:24px;margin-bottom:12px;}
-.presale .countdown{font-family:Orbitron;font-size:28px;margin-bottom:18px;}
-.presale .progress-bar{width:100%;height:16px;background:rgba(255,255,255,0.1);border-radius:12px;margin-bottom:12px;overflow:hidden;}
-.presale .progress{height:100%;background:linear-gradient(90deg,var(--blue),var(--violet));width:0%;transition:width .4s ease;}
-.presale .wallet-btn{margin-top:12px;width:100%;}
 
 footer{
-  margin-top:auto;background:#0b0b22;padding:14px 24px;text-align:center;color:var(--text-light);font-size:14px;
+  width:100%;
+  padding:20px;
+  text-align:center;
+  color:var(--text-light);
 }
+
+@media(max-width:768px){
+  .stats{
+    flex-direction:column;
+    gap:20px;
+  }
+}
+
 </style>
 </head>
 <body>
 
 <header>
-<div class="logo">Zep Cash</div>
-<nav>
-<a href="about.html">About</a>
-<a href="roadmap.html">Roadmap</a>
-</nav>
+  <div class="logo">Zep Cash</div>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="roadmap.html">Roadmap</a>
+  </nav>
 </header>
 
-<section class="hero">
-<h1>Powering the Student Creator Economy</h1>
-<p>Join the Zep Cash (ZAC) presale! Connect your Base or MetaMask wallet and be part of the first global student-powered token economy.</p>
-<button class="btn" onclick="connectWallet()">💰 Connect Wallet & Buy ZAC</button>
-</section>
+<div class="main">
 
-<section class="stats">
-<div class="stat-card">
-<h2 id="totalSupply">500,000,000</h2>
-<p>Total Supply</p>
-</div>
-<div class="stat-card">
-<h2 id="sold">0</h2>
-<p>Sold</p>
-</div>
-<div class="stat-card">
-<h2 id="remaining">500,000,000</h2>
-<p>Remaining</p>
-</div>
-</section>
+  <div class="card">
+    <h1>Join the Zep Cash Presale</h1>
+    <p style="text-align:center;">Connect your Base/Metamask wallet to buy ZAC with USDC</p>
+    <button onclick="connectWallet()">Connect Wallet / Buy Now</button>
+  </div>
 
-<section class="presale">
-<h3>Presale Countdown</h3>
-<div class="countdown" id="countdown">00d 00h 00m 00s</div>
-<div class="progress-bar"><div class="progress" id="progress"></div></div>
-<button class="btn wallet-btn" onclick="connectWallet()">Connect Wallet to Buy</button>
-</section>
+  <div class="stats">
+    <div class="stat">
+      <h2 id="sold">0 ZAC</h2>
+      <p>Sold</p>
+    </div>
+    <div class="stat">
+      <h2 id="remaining">500,000,000 ZAC</h2>
+      <p>Remaining</p>
+    </div>
+    <div class="stat">
+      <h2 id="price">$0.00025</h2>
+      <p>Presale Price</p>
+    </div>
+  </div>
 
-<footer>© 2026 Zep Cash • Join our Telegram for updates</footer>
+  <div class="card">
+    <h2>Presale Countdown</h2>
+    <p id="countdown" style="text-align:center;font-size:20px;"></p>
+  </div>
+
+</div>
+
+<footer>
+  🚀 Powered by Zep Cash | Base Network
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 <script>
+// ======== Wallet & Countdown ========
 let provider, signer, userAddress;
 
-// ======= Wallet Connection =======
 async function connectWallet(){
-try{
-  if(!window.ethereum){alert("Please install MetaMask or Base Wallet"); return;}
-  provider=new ethers.providers.Web3Provider(window.ethereum);
-  await provider.send("eth_requestAccounts",[]);
-  signer=provider.getSigner();
-  userAddress=await signer.getAddress();
-  alert("Wallet connected: "+userAddress);
-  // redirect to presale page
-  window.location.href="presale.html";
-}catch(e){console.error(e);alert("Wallet connection failed");}
+  if(window.ethereum){
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
+    signer = provider.getSigner();
+    userAddress = await signer.getAddress();
+    alert("Wallet connected: "+userAddress);
+    // redirect to presale page
+    window.location.href="presale.html";
+  } else {
+    alert("Install MetaMask or Base wallet!");
+  }
 }
 
-// ======= Presale Countdown =======
-const countdownEl=document.getElementById("countdown");
-// Set target date for presale
-const presaleDate=new Date("2026-04-01T00:00:00Z");
+// ======= Presale countdown =======
+const presaleEnd = new Date();
+presaleEnd.setDate(presaleEnd.getDate() + 10); // 10 days countdown
 function updateCountdown(){
-  const now=new Date();
-  const diff=presaleDate-now;
-  if(diff<=0){countdownEl.innerText="Presale Live!";return;}
+  const now = new Date();
+  let diff = presaleEnd - now;
+  if(diff<0) diff=0;
   const d=Math.floor(diff/(1000*60*60*24));
-  const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-  const m=Math.floor((diff%(1000*60*60))/(1000*60));
-  const s=Math.floor((diff%(1000*60))/1000);
-  countdownEl.innerText=`${d}d ${h}h ${m}m ${s}s`;
+  const h=Math.floor(diff/(1000*60*60)%24);
+  const m=Math.floor(diff/(1000*60)%60);
+  const s=Math.floor(diff/1000%60);
+  document.getElementById("countdown").innerText=`${d}d ${h}h ${m}m ${s}s`;
 }
 setInterval(updateCountdown,1000);
+updateCountdown();
 
-// ======= Token Stats Simulation =======
-const totalSupply=500000000;
-let sold=0;
-function updateStats(){
-  sold=Math.min(sold+Math.floor(Math.random()*5000),totalSupply);
-  document.getElementById("sold").innerText=sold.toLocaleString();
-  document.getElementById("remaining").innerText=(totalSupply-sold).toLocaleString();
-  document.getElementById("progress").style.width=((sold/totalSupply)*100).toFixed(2)+"%";
-}
-setInterval(updateStats,3000);
 </script>
 
 </body>
