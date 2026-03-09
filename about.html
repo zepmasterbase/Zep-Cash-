@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Zep Cash</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#00E5FF;
+  --violet:#7B4DFF;
+  --glass:rgba(255,255,255,0.05);
+  --bg:radial-gradient(circle at 30% 10%, #050018, #00000c);
+  --card-radius:22px;
+  --text-light:rgba(255,255,255,0.8);
+}
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:var(--bg);
+  color:white;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+}
+.logo{
+  font-family:Orbitron;
+  font-size:24px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.container{
+  max-width:900px;
+  margin:50px auto;
+  padding:0 16px;
+}
+.glass-card{
+  background:var(--glass);
+  backdrop-filter:blur(25px);
+  border-radius:var(--card-radius);
+  padding:28px;
+  margin-bottom:24px;
+  box-shadow:0 0 30px rgba(0,229,255,0.25);
+}
+h1,h2{font-family:Orbitron;margin-bottom:16px;text-align:center;}
+p{line-height:1.6;margin-bottom:12px;color:var(--text-light);}
+ul{margin-left:20px;margin-bottom:12px;line-height:1.5;}
+ul li::marker{color:var(--blue);}
+a{color:var(--blue);text-decoration:none;}
+a:hover{text-decoration:underline;}
+footer{
+  text-align:center;
+  margin-top:50px;
+  font-size:14px;
+  opacity:.7;
+}
+.button{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  color:#050015;
+  font-family:Orbitron;
+  font-weight:700;
+  cursor:pointer;
+  text-align:center;
+  transition:.3s;
+  margin-top:16px;
+}
+.button:hover{transform:translateY(-2px);box-shadow:0 0 30px var(--blue),0 0 60px var(--violet);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Zep Cash</div>
+  <div class="button" onclick="location.href='index.html'">Home</div>
+</header>
+
+<div class="container">
+
+  <div class="glass-card">
+    <h1>About Zep Cash (ZAC)</h1>
+    <p>Zep Cash (ZAC) is the official utility token powering the student creator economy. 
+    Designed for university students, creators, and freelancers, ZAC enables instant tipping, rewards, and cross-border payments within our ecosystem.</p>
+    
+    <h2>Our Mission</h2>
+    <ul>
+      <li>Empower student creators globally</li>
+      <li>Reward music, podcast, and freelance work instantly</li>
+      <li>Create a seamless, decentralized student economy</li>
+      <li>Bridge global transactions using Base Network</li>
+    </ul>
+    
+    <h2>Where Zep Cash Is Used</h2>
+    <ul>
+      <li><strong>Campus Wave:</strong> Tip your favorite student artists and podcasters, earn rewards, and collaborate globally.</li>
+      <li><strong>Zep Swipe:</strong> Student freelancers get paid instantly and securely in ZAC.</li>
+      <li><strong>University Ecosystems:</strong> Build a digital economy for student creators and organizations.</li>
+    </ul>
+    
+    <h2>Token Details</h2>
+    <ul>
+      <li>Token: Zep Cash (ZAC)</li>
+      <li>Network: Base Network</li>
+      <li>Total Supply: 500,000,000 ZAC</li>
+      <li>Presale Price: $0.00025</li>
+      <li>Target Launch Price: $0.002</li>
+      <li>Contract Address: <a href="https://etherscan.io/address/0xA40F79dbeEE44AF9EC40d1D9b0e10EB1110546c1" target="_blank">0xA40F79dbeEE44AF9EC40d1D9b0e10EB1110546c1</a></li>
+    </ul>
+
+    <h2>Vision</h2>
+    <p>We envision the first student-powered creator economy where artists, podcasters, and freelancers can earn, tip, and collaborate using Zep Cash. Early supporters help shape the future of student fintech and digital creator platforms.</p>
+
+    <div class="button" onclick="location.href='roadmap.html'">See Roadmap</div>
+  </div>
+
+</div>
+
+<footer>
+  Zep Cash © 2026 | Powered by Base Network
+</footer>
+
+</body>
+</html>
